@@ -13,10 +13,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
     public void IrEditarMiPerfil (View v){
         Intent intento = new Intent(this, EditarMiPerfil.class);
         startActivity(intento);
 
 
     }
+
+    ///lo arregle ctm
+
 }

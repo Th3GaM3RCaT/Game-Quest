@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "775678110196",
+    "project_id": "gamequest-71a36",
+    "storage_bucket": "gamequest-71a36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775678110196:android:ac3d832238c50f4daf71a1",
+        "android_client_info": {
+          "package_name": "com.thecurseds.gamequest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhyKmeepEkIv4A8KoKswXNrAnRrmH5rlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
