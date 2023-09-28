@@ -17,8 +17,6 @@ public class MainActivity extends AppCompatActivity {
     public void IrEditarMiPerfil (View v){
         Intent intento = new Intent(this, EditarMiPerfil.class);
         startActivity(intento);
-
-
     }
 
     ///lo arregle ctm
