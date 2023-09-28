@@ -11,7 +11,7 @@ public class EditarMiPerfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mi_perfil);
+        setContentView(R.layout.activity_editar_perfil);
     }
     public void IrInicio (View v){
         finish();
