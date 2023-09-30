@@ -13,12 +13,12 @@
         android:background="#C3F9F5F5"
         android:clickable="true"
         android:foreground="@android:drawable/ic_menu_add"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText2"
+        app:layout_constraintBottom_toTopOf="@+id/lbl_userName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_bias="0.72"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/lbl_userName"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:ems="10"
@@ -52,25 +52,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mis datos"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+        app:layout_constraintBottom_toTopOf="@+id/lbl_numberPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/lbl_numberPhone"
         android:layout_width="301dp"
         android:layout_height="55dp"
         android:ems="10"
         android:hint="+56 9 1234 5678"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/lbl_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/lbl_mail"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:ems="10"
@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.572" />
 
     <EditText
-        android:id="@+id/editTextTextPostalAddress"
+        android:id="@+id/lbl_city"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_marginTop="9dp"
@@ -94,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_mail" />
 
     <Button
         android:id="@+id/button3"
@@ -104,6 +104,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_city" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
