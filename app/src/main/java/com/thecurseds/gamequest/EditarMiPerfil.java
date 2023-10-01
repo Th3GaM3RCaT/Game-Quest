@@ -13,7 +13,7 @@ public class EditarMiPerfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
     }
-    public void IrInicio (View v){
+    public void GoMain (View v){
         finish();
     }
     public void CambiarFoto (){

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.GameQuest"
         tools:targetApi="31">
         <activity
-            android:name=".VerPerfil"
+            android:name=".SeeProfile"
             android:exported="false" />
         <activity
             android:name=".EditarMiPerfil"

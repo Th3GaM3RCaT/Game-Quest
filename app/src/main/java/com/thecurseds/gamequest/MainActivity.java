@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intento);
     }
     public void IrVerPerfil (View v){
-        Intent intento = new Intent(this, VerPerfil.class);
+        Intent intento = new Intent(this, SeeProfile.class);
         startActivity(intento);
     }
 
