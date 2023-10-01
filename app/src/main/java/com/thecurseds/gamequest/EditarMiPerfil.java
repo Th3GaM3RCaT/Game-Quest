@@ -3,8 +3,11 @@ package com.thecurseds.gamequest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class EditarMiPerfil extends AppCompatActivity {
 
@@ -17,10 +20,12 @@ public class EditarMiPerfil extends AppCompatActivity {
         finish();
     }
     public void CambiarFoto (){
-        Image i;
-        i= null;
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                .build();
     }
     public void ModificarDatos (){
+
 
     }
 

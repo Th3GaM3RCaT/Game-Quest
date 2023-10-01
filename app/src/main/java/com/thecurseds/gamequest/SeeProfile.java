@@ -20,6 +20,7 @@ public class SeeProfile extends AppCompatActivity {
     TextView Mail;
     TextView Address;
     FirebaseUser user;
+    Uri userPhoto;
 
 
 
@@ -48,7 +49,7 @@ public class SeeProfile extends AppCompatActivity {
             // Name, email address, and profile photo Url
             UserName.setText(user.getDisplayName());
             Mail.setText(user.getEmail());
-            Uri photoUrl = user.getPhotoUrl();
+            userPhoto = user.getPhotoUrl();
 
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
