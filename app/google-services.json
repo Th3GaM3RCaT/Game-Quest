@@ -12,7 +12,20 @@
           "package_name": "com.thecurseds.gamequest"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "775678110196-27g16jpfi4pc92me2qjgkeb60f0df92d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thecurseds.gamequest",
+            "certificate_hash": "8688444e4211c4e59b291efb42d3f583c8e52de2"
+          }
+        },
+        {
+          "client_id": "775678110196-r5jfdr082qpraqdoe1oohsq7k625nppr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDhyKmeepEkIv4A8KoKswXNrAnRrmH5rlI"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775678110196-r5jfdr082qpraqdoe1oohsq7k625nppr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
