@@ -19,8 +19,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="320dp"
-        android:layout_height="430dp"
+        android:layout_width="416dp"
+        android:layout_height="425dp"
         app:layout_constraintBottom_toTopOf="@+id/boton1pag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.593"
@@ -34,8 +34,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="396dp"
+                android:layout_height="159dp"
                 android:layout_marginBottom="50dp"
                 android:background="@mipmap/red"
                 app:layout_constraintBottom_toTopOf="@+id/boton1pag"
@@ -47,8 +47,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="396dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 android:background="@mipmap/assasins"
                 app:layout_constraintBottom_toTopOf="@+id/imageButtonPag2"
@@ -60,8 +60,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton3"
-                android:layout_width="match_parent"
-                android:layout_height="222dp"
+                android:layout_width="396dp"
+                android:layout_height="219dp"
                 android:layout_marginBottom="50dp"
                 android:background="@mipmap/miles"
                 app:layout_constraintBottom_toTopOf="@+id/imageButtonPag2"
