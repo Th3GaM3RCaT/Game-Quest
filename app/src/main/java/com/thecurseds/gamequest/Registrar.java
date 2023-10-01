@@ -1,9 +1,6 @@
 package com.thecurseds.gamequest;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -40,16 +37,16 @@ public class Registrar extends AppCompatActivity {
         registrarseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               String txt_email = emailB.getText().toString();
+               String txt_emailB = emailB.getText().toString();
                String txt_password = password.getText().toString();
 
 
-               if   (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
+               if   (TextUtils.isEmpty(txt_emailB) || TextUtils.isEmpty(txt_password)){
                    Toast.makeText(Registrar.this, "Sin Nada mano", Toast.LENGTH_SHORT).show();
                } else if (txt_password.length()< 6) {
                    Toast.makeText(Registrar.this, "Demaciado Facil Papito", Toast.LENGTH_SHORT).show();
                }else {
-                   registerUser(txt_password , txt_email);
+                   registerUser(txt_password , txt_emailB);
                }
 
 

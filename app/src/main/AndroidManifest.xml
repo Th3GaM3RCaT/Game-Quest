@@ -16,13 +16,7 @@
             android:name=".Loggin"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
             android:name=".Registrar"
-            android:exported="false" />
-        <activity
-            android:name=".Regustrarse"
             android:exported="false" />
         <activity
             android:name=".EditarMiPerfil"
