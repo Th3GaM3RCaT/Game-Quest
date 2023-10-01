@@ -6,103 +6,145 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="301dp"
-        android:layout_height="192dp"
-        android:layout_marginBottom="148dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="302dp"
-        android:layout_height="172dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/widgetBuscar"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-    <Button
-        android:id="@+id/botonmaspag"
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="28dp"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/boton4pag" />
-
-    <Button
-        android:id="@+id/boton4pag"
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="28dp"
-        android:text="4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/botonmaspag"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/boton3pag" />
-
-    <Button
-        android:id="@+id/boton3pag"
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="28dp"
-        android:text="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/boton4pag"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/boton2pag" />
-
-    <Button
-        android:id="@+id/boton2pag"
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="28dp"
-        android:text="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/boton3pag"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/boton1pag" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:onClick="IrEditarMiPerfil"
-        android:text="Editar mi perfil"
-        app:layout_constraintBottom_toTopOf="@+id/widgetBuscar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/boton1pag"
-        android:layout_width="56dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="28dp"
-        android:text="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/boton2pag"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <SearchView
         android:id="@+id/widgetBuscar"
         android:layout_width="273dp"
         android:layout_height="58dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="108dp"
         android:background="#FDEF6E"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="320dp"
+        android:layout_height="430dp"
+        app:layout_constraintBottom_toTopOf="@+id/boton1pag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/widgetBuscar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="300dp"
+                android:layout_height="214dp"
+                android:layout_marginBottom="50dp"
+                android:background="@mipmap/red"
+                app:layout_constraintBottom_toTopOf="@+id/boton1pag"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButtonPag"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="300dp"
+                android:layout_height="214dp"
+                android:layout_marginBottom="50dp"
+                android:background="@mipmap/assasins"
+                app:layout_constraintBottom_toTopOf="@+id/imageButtonPag2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/widgetBuscar"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="300dp"
+                android:layout_height="214dp"
+                android:layout_marginBottom="50dp"
+                android:background="@mipmap/miles"
+                app:layout_constraintBottom_toTopOf="@+id/imageButtonPag2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/widgetBuscar"
+                app:layout_constraintVertical_bias="0.5" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/boton1pag"
+        android:layout_width="56dp"
+        android:layout_height="50dp"
+        android:text="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boton2pag"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <Button
+        android:id="@+id/boton3pag"
+        android:layout_width="56dp"
+        android:layout_height="50dp"
+        android:text="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boton4pag"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/boton2pag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <Button
+        android:id="@+id/boton4pag"
+        android:layout_width="56dp"
+        android:layout_height="50dp"
+        android:text="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonmaspag"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/boton3pag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <Button
+        android:id="@+id/boton2pag"
+        android:layout_width="56dp"
+        android:layout_height="50dp"
+        android:text="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boton3pag"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/boton1pag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <Button
+        android:id="@+id/botonmaspag"
+        android:layout_width="56dp"
+        android:layout_height="50dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/boton4pag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="IrEditarMiPerfil"
+        android:text="Editar mi perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,5 +158,6 @@
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

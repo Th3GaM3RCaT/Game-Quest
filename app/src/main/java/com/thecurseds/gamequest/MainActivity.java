@@ -18,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intento = new Intent(this, EditarMiPerfil.class);
         startActivity(intento);
     }
+    public void IrPaginaUno (View v){
+        Intent intento = new Intent(this, MainActivity.class);
+        startActivity(intento);
+    }
 
     ///lo arregle ctm
 
