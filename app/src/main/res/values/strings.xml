@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">GameQuest</string>
+    <string name="login">Login</string>
+    <string name="contrase_a">contraseña</string>
+    <string name="email">email</string>
+    <string name="paswword">paswword</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="dale_para_logearte">Dale para logearte</string>
+    <string name="dale_para_registrarte">dale_para_registrarte</string>
+    <string name="deslogearse">deslogearse</string>
+    <string name="editar_mi_perfil">Editar mi perfil</string>
 </resources>
