@@ -37,6 +37,7 @@ public class SeeProfile extends AppCompatActivity {
         PhoneNumber.setText("+56 9 1234 5678");
         Mail.setText("correo@mail.com");
         Address.setText("Ciudad, Región");
+        
 
     }
 
