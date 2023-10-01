@@ -3,12 +3,15 @@ package com.thecurseds.gamequest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.location.Address;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.firebase.ui.auth.data.model.PhoneNumber;
+
+
+
 
 
 public class SeeProfile extends AppCompatActivity {
@@ -17,6 +20,8 @@ public class SeeProfile extends AppCompatActivity {
     TextView PhoneNumber;
     TextView Mail;
     TextView Address;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +38,28 @@ public class SeeProfile extends AppCompatActivity {
     }
 
     public void UserData(){
-        UserName.setText("Rodrigo");
+        UserName.setText("Nombre de Usuario");
         PhoneNumber.setText("+56 9 1234 5678");
         Mail.setText("correo@mail.com");
         Address.setText("Ciudad, Región");
+<<<<<<< Updated upstream
         
+=======
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            UserName.setText(user.getDisplayName());
+            Mail.setText(user.getEmail());
+            Uri photoUrl = user.getPhotoUrl();
+
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+        }
+>>>>>>> Stashed changes
 
     }
+
 
 
 }
