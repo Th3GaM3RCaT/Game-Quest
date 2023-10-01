@@ -9,9 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-
-
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class SeeProfile extends AppCompatActivity {
@@ -20,6 +19,7 @@ public class SeeProfile extends AppCompatActivity {
     TextView PhoneNumber;
     TextView Mail;
     TextView Address;
+    FirebaseUser user;
 
 
 
@@ -42,10 +42,8 @@ public class SeeProfile extends AppCompatActivity {
         PhoneNumber.setText("+56 9 1234 5678");
         Mail.setText("correo@mail.com");
         Address.setText("Ciudad, Región");
-<<<<<<< Updated upstream
-        
-=======
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, and profile photo Url
             UserName.setText(user.getDisplayName());
@@ -55,8 +53,10 @@ public class SeeProfile extends AppCompatActivity {
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
 
+
+
         }
->>>>>>> Stashed changes
+
 
     }
 
