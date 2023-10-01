@@ -20,5 +20,8 @@ public class EditarMiPerfil extends AppCompatActivity {
         Image i;
         i= null;
     }
+    public void ModificarDatos (){
+
+    }
 
 }

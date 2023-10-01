@@ -25,22 +25,10 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.user_details);
         user = auth.getCurrentUser();
         if (user == null){
-
-
-    public void IrEditarMiPerfil (View v){
-        Intent intento = new Intent(this, EditarMiPerfil.class);
-        startActivity(intento);
-    }
-    public void IrVerPerfil (View v){
-        Intent intento = new Intent(this, SeeProfile.class);
-        startActivity(intento);
-
             Intent intent = new Intent(getApplicationContext(),Loggin.class);
             startActivity(intent);
             finish();
-        }
-
-        else {
+        } else {
 
             textView.setText(user.getEmail());
         }
@@ -52,11 +40,15 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),Loggin.class);
                     startActivity(intent);
                     finish();
-
-
             }
         });
-
-
+    }
+    public void GoSeeProfile (View v){
+        Intent intento = new Intent(this, SeeProfile.class);
+        startActivity(intento);
+    }
+    public void GoEditProfile (View v){
+        Intent intento = new Intent(this, EditarMiPerfil.class);
+        startActivity(intento);
     }
 }
