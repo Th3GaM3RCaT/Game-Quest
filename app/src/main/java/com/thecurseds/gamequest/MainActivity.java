@@ -4,42 +4,49 @@ import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button registroButton;
-    private Button logearseButton;
-
+    FirebaseAuth auth;
+    Button button;
+    TextView textView;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        registroButton = findViewById(R.id.registroButton);
-        logearseButton = findViewById(R.id.logearseButton);
+        auth = FirebaseAuth.getInstance();
+        button = findViewById(R.id.logout);
+        textView = findViewById(R.id.user_details);
+        user = auth.getCurrentUser();
+        if (user == null){
 
-        registroButton.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent(getApplicationContext(),Loggin.class);
+            startActivity(intent);
+            finish();
+        }
+
+        else {
+
+            textView.setText(user.getEmail());
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Registrar.class));
+            public void onClick(View view) {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getApplicationContext(),Loggin.class);
+                    startActivity(intent);
+                    finish();
 
-                finish();
 
             }
-
-
         });
 
-        logearseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Loggin.class));
-
-                finish();
-
-            }
-
-
-        });
     }
 }

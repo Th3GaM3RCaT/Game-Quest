@@ -1,75 +1,109 @@
 package com.thecurseds.gamequest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Registrar extends AppCompatActivity {
 
+    TextInputEditText editTextEmail , editTextPassword;
+    Button buttonReg;
+    FirebaseAuth mAuth;
+    ProgressBar progressBar;
+    TextView textView;
 
 
-    private EditText emailB;
-    private EditText password;
-    private Button registrarseButton;
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
 
-    private FirebaseAuth auth;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
-
-        emailB =findViewById(R.id.emailB);
-        password =findViewById(R.id.password);
-        registrarseButton =findViewById(R.id.registrarseButton);
-        auth = FirebaseAuth.getInstance();
-
-
-        registrarseButton.setOnClickListener(new View.OnClickListener() {
+        editTextEmail = findViewById(R.id.email);
+        mAuth = FirebaseAuth.getInstance();
+        editTextPassword = findViewById(R.id.password);
+        buttonReg = findViewById(R.id.registerBtn);
+        progressBar = findViewById(R.id.progressBar);
+        textView = findViewById(R.id.loginNow);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-               String txt_emailB = emailB.getText().toString();
-               String txt_password = password.getText().toString();
-
-
-               if   (TextUtils.isEmpty(txt_emailB) || TextUtils.isEmpty(txt_password)){
-                   Toast.makeText(Registrar.this, "Sin Nada mano", Toast.LENGTH_SHORT).show();
-               } else if (txt_password.length()< 6) {
-                   Toast.makeText(Registrar.this, "Demaciado Facil Papito", Toast.LENGTH_SHORT).show();
-               }else {
-                   registerUser(txt_password , txt_emailB);
-               }
-
-
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Loggin.class);
+                startActivity(intent);
+                finish();
             }
-
         });
 
 
-
-
-    }
-
-    private void registerUser(String emailB, String password) {
-
-        auth.createUserWithEmailAndPassword(emailB, password).addOnCompleteListener(Registrar.this , new  OnCompleteListener<AuthResult>() {
+        buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                String email, password;
+                email = String.valueOf(editTextEmail.getText());
+                password = String.valueOf(editTextPassword.getText()) ;
 
-                if (task.isSuccessful()){
-                    Toast.makeText(Registrar.this, "Registrado manito", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(Registrar.this, "Fallo manito todo de nuevo nomas causa :v ", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(email)){
+
+                    Toast.makeText(Registrar.this, "Coloca correo mano", Toast.LENGTH_SHORT).show();
+                    return;
+
                 }
+                if (TextUtils.isEmpty(password)){
+
+                    Toast.makeText(Registrar.this, "Coloca contraseña mano", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }
+
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                progressBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+
+                                    Toast.makeText(Registrar.this, "Cuenta creada mano.",
+                                            Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(Registrar.this, "este correo ya tiene una cuenta.",
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
 
 
             }
@@ -78,3 +112,6 @@ public class Registrar extends AppCompatActivity {
 
     }
 }
+
+
+
