@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,22 +15,23 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
-
+            android:name=".MainLogin"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivitysecondary"
+            android:exported="false" />
+        <activity
             android:name=".SeeProfile"
             android:exported="false" />
         <activity
-
             android:name=".Loggin"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".Registrar"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="false" />
-
-
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
-
             android:name=".EditarMiPerfil"
             android:exported="false" />
         <activity
