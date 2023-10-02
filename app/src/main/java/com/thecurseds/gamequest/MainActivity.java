@@ -14,15 +14,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void IrEditarMiPerfil (View v){
-        Intent intento = new Intent(this, EditarMiPerfil.class);
-        startActivity(intento);
+    public void IrLogin (View v){
+        Intent intent = new Intent(this, MainLogin.class);
+        startActivity(intent);
     }
-    public void IrPaginaUno (View v){
-        Intent intento = new Intent(this, MainActivity.class);
-        startActivity(intento);
-    }
-
-    ///lo arregle ctm
 
 }
