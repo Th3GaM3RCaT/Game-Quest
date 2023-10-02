@@ -40,7 +40,7 @@ public class SeeProfile extends AppCompatActivity {
 
     public void UserData(){
         UserName.setText("Nombre de Usuario");
-        PhoneNumber.setText("+56 9 1234 5678");
+        PhoneNumber.setText("Número de teléfono");
         Mail.setText("correo@mail.com");
         Address.setText("Ciudad, Región");
 

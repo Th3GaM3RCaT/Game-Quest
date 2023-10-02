@@ -53,4 +53,8 @@ public class MainLogin extends AppCompatActivity {
         Intent intento = new Intent(this, EditarMiPerfil.class);
         startActivity(intento);
     }
+    public void Volver (View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
