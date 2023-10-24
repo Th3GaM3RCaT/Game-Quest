@@ -17,7 +17,7 @@
         tools:context=".EditarMiPerfil">
 
         <ImageView
-            android:id="@+id/img_user"
+            android:id="@+id/img_Profile"
             android:layout_width="126dp"
             android:layout_height="128dp"
             android:background="#C3F9F5F5"
@@ -62,7 +62,7 @@
             android:text="Nombre de usuario"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_user" />
+            app:layout_constraintTop_toBottomOf="@+id/img_Profile" />
 
         <TextView
             android:id="@+id/txt_correo"

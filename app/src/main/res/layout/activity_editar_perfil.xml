@@ -2,31 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="@android:dimen/thumbnail_height"
+    android:minHeight="@android:dimen/thumbnail_height"
     tools:context=".EditarMiPerfil">
-
-    <ImageView
-        android:id="@+id/img_user"
-        android:layout_width="126dp"
-        android:layout_height="128dp"
-        android:background="#C3F9F5F5"
-        android:clickable="true"
-        android:foreground="@android:drawable/ic_menu_add"
-        app:layout_constraintBottom_toTopOf="@+id/lbl_userName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/btn_volver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:onClick="GoMain"
         android:text="volver al main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +41,10 @@
         android:text="Mis datos"
         app:layout_constraintBottom_toTopOf="@+id/lbl_numberPhone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_userName"
+        app:layout_constraintVertical_bias="0.774" />
 
     <EditText
         android:id="@+id/lbl_numberPhone"
@@ -106,5 +95,19 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_city" />
+
+    <ImageButton
+        android:id="@+id/img_Profile"
+        android:layout_width="155dp"
+        android:layout_height="155dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/lbl_userName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
