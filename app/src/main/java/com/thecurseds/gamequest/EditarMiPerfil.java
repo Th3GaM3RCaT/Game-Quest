@@ -2,7 +2,16 @@ package com.thecurseds.gamequest;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -11,23 +20,16 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,25 +49,29 @@ public class EditarMiPerfil extends AppCompatActivity {
             mGetContent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                try {
-                    uri = result.getData().getData();
-                    profile.setImageURI(uri);
-                } catch (Exception e) {
-                    Toast.makeText(EditarMiPerfil.this, "Intente de nuevo", LENGTH_SHORT).show();
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    try {
+                        assert result.getData() != null;
+                        uri = result.getData().getData();
+                        profile.setImageURI(uri);
+                    } catch (Exception tryAgain) {
+                        Toast.makeText(EditarMiPerfil.this, "Intente de nuevo", LENGTH_SHORT).show();
+                    }
                 }
             }
-        }
     );
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
 
-
-
+    @SuppressLint({"IntentReset", "InlinedApi"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
+
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -82,15 +88,15 @@ public class EditarMiPerfil extends AppCompatActivity {
         profile.setOnClickListener(view -> {
             // Pass in the mime type you want to let the user select
             // as the input
-
-            try {
-                Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+            Intent intent;
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
                 mGetContent.launch(intent.setType("image/*"));
-                //.launch("image/*");
-            } catch (Exception e) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            } else {
+                intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 mGetContent.launch(intent.setType("image/*"));
             }
+
         });
 
         city.setOnClickListener(view -> Save.setEnabled(true));
@@ -100,46 +106,86 @@ public class EditarMiPerfil extends AppCompatActivity {
         Back.setOnClickListener(View -> finish());
 
         CargarDatos();
-        
+
     }
-    public void GuardarDatos(){
-        Toast.makeText(this, "Falta subir los datos", LENGTH_SHORT).show();
+
+    private void GuardarDatos() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
         //a base de datos
         user.put("UserId", User.getUid());
-        user.put("Name",  String.valueOf(userName.getText()));
+        user.put("Name", String.valueOf(userName.getText()));
         user.put("Phone", String.valueOf(numberPhone.getText()));
         user.put("eMail", String.valueOf(eMail.getText()));
         user.put("City", String.valueOf(city.getText()));
-        //user.put("profileUrl", String.valueOf());
+        user.put("DateHour", FechaHora());
+        StorageReference spaceRef = storageRef.child(User.getUid() + "/profile.jpg");
+        String url = SubirFoto(uri, spaceRef);
+        user.put("profileUrl", url);
 
         //a usuario
         ModificarDatos();
 
-
-// Add a new document with a generated ID
+        // Add a new document with a generated ID
         db.collection("usuarios").add(user);
     }
-    public void CargarDatos(){
+
+    private void CargarDatos() {
         Session();
+
         userName.setText(User.getDisplayName());
         numberPhone.setText(User.getPhoneNumber());
         eMail.setText(User.getEmail());
-        //city.setText(User.getCity());
-        //User.getPhotoUrl();
+
+
+        // EditText userName;
+        //    EditText numberPhone;
+        //    EditText eMail;
+        //    EditText city;
+
+
     }
-    public void ModificarDatos(){
+
+    private void ModificarDatos() {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(String.valueOf(userName.getText()))
-                .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                .setPhotoUri(uri)
                 .build();
         User.updateProfile(profileUpdates)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "User profile updated.");
+                        Toast.makeText(this, "Datos Actualizados", LENGTH_SHORT).show();
                     }
                 });
     }
-    private void Session(){if (User == null){finish();}};
+
+    private void Session() {
+        if (User == null) {
+            finish();
+        }
+    }
+
+    @NonNull
+    private String FechaHora() {
+        String date;
+        int year = LocalDateTime.now().getYear();
+        int month = LocalDateTime.now().getMonthValue();
+        int day = LocalDate.now().getDayOfMonth();
+        int hour = LocalDateTime.now().getHour();
+        int minute = LocalDateTime.now().getMinute();
+        int second = LocalDateTime.now().getSecond();
+        date = day + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
+        return date;
+    }
+
+    @NonNull
+    private String SubirFoto(Uri uri, @NonNull StorageReference riversRef) {
+
+        UploadTask uploadTask = riversRef.putFile(uri);
+
+        uploadTask.addOnFailureListener(exception -> Toast.makeText(this, "Error al subir foto", LENGTH_SHORT).show()).addOnSuccessListener(taskSnapshot -> {
+            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+        });
+        return riversRef.child(User.getUid() + "/profile.png").getDownloadUrl().toString();
+    }
 }

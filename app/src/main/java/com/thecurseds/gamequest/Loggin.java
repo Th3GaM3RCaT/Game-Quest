@@ -1,4 +1,5 @@
 package com.thecurseds.gamequest;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,17 +20,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Loggin extends AppCompatActivity {
-    TextInputEditText editTextEmail , editTextPassword;
+    TextInputEditText editTextEmail, editTextPassword;
     Button buttonLog;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
+
     @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        if (currentUser != null) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
 
@@ -61,15 +63,15 @@ public class Loggin extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 String email, password;
                 email = String.valueOf(editTextEmail.getText());
-                password = String.valueOf(editTextPassword.getText()) ;
+                password = String.valueOf(editTextPassword.getText());
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
 
                     Toast.makeText(Loggin.this, "Coloca correo mano", Toast.LENGTH_SHORT).show();
                     return;
 
                 }
-                if (TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
 
                     Toast.makeText(Loggin.this, "Coloca contraseña mano", Toast.LENGTH_SHORT).show();
                     return;
@@ -83,7 +85,7 @@ public class Loggin extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Loggin.this, "Te logeaste mano por fin", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -92,7 +94,8 @@ public class Loggin extends AppCompatActivity {
 
                                 }
                             }
-                        });
+                        })
+                ;
 
             }
         });

@@ -23,7 +23,6 @@ public class SeeProfile extends AppCompatActivity {
     Uri userPhoto;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +33,12 @@ public class SeeProfile extends AppCompatActivity {
         Address = findViewById(R.id.txt_ciudadRegion);
         UserData();
     }
-    public void GoMain(View v){
+
+    public void GoMain(View v) {
         finish();
     }
 
-    public void UserData(){
+    public void UserData() {
         UserName.setText("Nombre de Usuario");
         PhoneNumber.setText("Número de teléfono");
         Mail.setText("correo@mail.com");
@@ -49,18 +49,17 @@ public class SeeProfile extends AppCompatActivity {
             // Name, email address, and profile photo Url
             UserName.setText(user.getDisplayName());
             Mail.setText(user.getEmail());
+
             userPhoto = user.getPhotoUrl();
 
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
 
 
-
         }
 
 
     }
-
 
 
 }

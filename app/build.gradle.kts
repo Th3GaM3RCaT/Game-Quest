@@ -58,5 +58,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     implementation("androidx.activity:activity-ktx:$activity_version")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
+    implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
 
 }
