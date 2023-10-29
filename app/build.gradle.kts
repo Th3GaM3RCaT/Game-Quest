@@ -46,5 +46,6 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation ("com.paypal.sdk:paypal-android-sdk:2.16.0")
 
 }
