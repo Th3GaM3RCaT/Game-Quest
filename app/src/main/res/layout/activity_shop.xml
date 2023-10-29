@@ -9,10 +9,10 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/user_details"
+        android:id="@+id/gamesusables"
         android:layout_width="139dp"
         android:layout_height="47dp"
-        android:text="PROFE UN 7 UWU"
+        android:text="ACA ESTARAN LOS JUEGOS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -21,27 +21,9 @@
         app:layout_constraintVertical_bias="0.364" />
 
     <Button
-        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="105dp"
-        android:onClick="IrEditarMiPerfil"
-        android:text="@string/editar_mi_perfil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/logout"
-        android:text="@string/deslogearse"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Tienda"
-        android:text="@string/tienda"/>
-
+        android:id="@+id/BtnAdd"
+        android:text="@string/a_adir_un_juego"/>
 
 </LinearLayout>

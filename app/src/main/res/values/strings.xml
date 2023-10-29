@@ -10,4 +10,8 @@
     <string name="dale_para_registrarte">dale_para_registrarte</string>
     <string name="deslogearse">deslogearse</string>
     <string name="editar_mi_perfil">Editar mi perfil</string>
+    <string name="tienda">Tienda</string>
+    <string name="a_adir_juego">/AÑADIR JUEGO</string>
+    <string name="guardar_juego">Guardar juego</string>
+    <string name="a_adir_un_juego">Añadir un juego</string>
 </resources>

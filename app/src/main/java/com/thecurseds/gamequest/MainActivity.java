@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     FirebaseUser user;
 
+        Button  Tienda;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.logout);
         textView = findViewById(R.id.user_details);
         user = auth.getCurrentUser();
+        Tienda = findViewById(R.id.Tienda);
         if (user == null){
 
             Intent intent = new Intent(getApplicationContext(),Loggin.class);
@@ -45,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
                     finish();
 
 
+            }
+        });
+
+
+        Tienda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Shop.class));
             }
         });
 
