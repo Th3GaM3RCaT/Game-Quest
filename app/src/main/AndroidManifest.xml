@@ -18,9 +18,6 @@
             android:name=".MainLogin"
             android:exported="false" />
         <activity
-            android:name=".MainActivitysecondary"
-            android:exported="false" />
-        <activity
             android:name=".SeeProfile"
             android:exported="false" />
         <activity
@@ -31,6 +28,9 @@
             android:name=".Registrar"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
+            android:name=".ProductPurchaseActivity"
+            android:exported="false"/>
         <activity
             android:name=".EditarMiPerfil"
             android:exported="false" />

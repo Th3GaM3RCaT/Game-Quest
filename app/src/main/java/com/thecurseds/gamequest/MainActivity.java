@@ -16,8 +16,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         button_compra = findViewById(R.id.btn_compra);
 
+        button_compra.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), ProductPurchaseActivity.class);
+            startActivity(intent);
+        });
     }
-    button_compra.
+
+
 
     public void IrLogin (View v){
         Intent intent = new Intent(this, MainLogin.class);
