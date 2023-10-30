@@ -7,18 +7,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class SeeProfile extends AppCompatActivity {
+public class VerPerfil extends AppCompatActivity {
 
     TextView UserName;
     TextView PhoneNumber;
     TextView Mail;
     TextView Address;
+    ImageView Profile;
     FirebaseUser user;
     Uri userPhoto;
 
@@ -29,8 +31,9 @@ public class SeeProfile extends AppCompatActivity {
         setContentView(R.layout.activity_ver_perfil);
         UserName = findViewById(R.id.txt_nombreUsuario);
         PhoneNumber = findViewById(R.id.txt_telefono);
-        Mail = findViewById(R.id.txt_correo);
-        Address = findViewById(R.id.txt_ciudadRegion);
+        Mail = findViewById(R.id.txt_Ciudad);
+        Address = findViewById(R.id.txt_valoracion);
+        Profile = findViewById(R.id.img_Profile);
         UserData();
     }
 
@@ -51,6 +54,7 @@ public class SeeProfile extends AppCompatActivity {
             Mail.setText(user.getEmail());
 
             userPhoto = user.getPhotoUrl();
+            //Profile.setImageURI(userPhoto);
 
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();

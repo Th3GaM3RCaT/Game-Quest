@@ -20,6 +20,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -119,9 +121,8 @@ public class EditarMiPerfil extends AppCompatActivity {
         user.put("eMail", String.valueOf(eMail.getText()));
         user.put("City", String.valueOf(city.getText()));
         user.put("DateHour", FechaHora());
-        StorageReference spaceRef = storageRef.child(User.getUid() + "/profile.jpg");
-        String url = SubirFoto(uri, spaceRef);
-        user.put("profileUrl", url);
+        SubirFoto(uri);
+        
 
         //a usuario
         ModificarDatos();
@@ -136,6 +137,14 @@ public class EditarMiPerfil extends AppCompatActivity {
         userName.setText(User.getDisplayName());
         numberPhone.setText(User.getPhoneNumber());
         eMail.setText(User.getEmail());
+
+        storageRef.child(User.getUid()+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                profile.setImageURI(uri);
+            }
+        });
+
 
 
         // EditText userName;
@@ -179,13 +188,15 @@ public class EditarMiPerfil extends AppCompatActivity {
     }
 
     @NonNull
-    private String SubirFoto(Uri uri, @NonNull StorageReference riversRef) {
+    private String SubirFoto(Uri uri) {
 
-        UploadTask uploadTask = riversRef.putFile(uri);
+        StorageReference spaceRef = storageRef.child(User.getUid() + "/profile.jpg");
+        UploadTask uploadTask = spaceRef.putFile(uri);
 
-        uploadTask.addOnFailureListener(exception -> Toast.makeText(this, "Error al subir foto", LENGTH_SHORT).show()).addOnSuccessListener(taskSnapshot -> {
+        uploadTask.addOnFailureListener(exception -> Toast.makeText(this, "Error al subir foto", LENGTH_SHORT).show()
+        ).addOnSuccessListener(taskSnapshot -> {
             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
         });
-        return riversRef.child(User.getUid() + "/profile.png").getDownloadUrl().toString();
+        return spaceRef.child(User.getUid() + "/profile.png").getDownloadUrl().toString();
     }
 }

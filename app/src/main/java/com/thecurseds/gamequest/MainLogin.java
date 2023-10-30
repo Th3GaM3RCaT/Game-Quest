@@ -46,7 +46,7 @@ public class MainLogin extends AppCompatActivity {
         });
     }
     public void GoSeeProfile (View v){
-        Intent intento = new Intent(this, SeeProfile.class);
+        Intent intento = new Intent(this, VerPerfil.class);
         startActivity(intento);
     }
     public void GoEditProfile (View v){

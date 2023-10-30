@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SeeProfile">
+    tools:context=".VerPerfil">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -20,16 +20,13 @@
             android:id="@+id/img_Profile"
             android:layout_width="126dp"
             android:layout_height="128dp"
-            android:background="#C3F9F5F5"
             android:clickable="true"
-            android:foreground="@android:drawable/ic_menu_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.172"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintVertical_bias="0.172" />
 
         <Button
             android:id="@+id/btn_volver"
@@ -65,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_Profile" />
 
         <TextView
-            android:id="@+id/txt_correo"
+            android:id="@+id/txt_Ciudad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -76,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_telefono" />
 
         <TextView
-            android:id="@+id/txt_ciudadRegion"
+            android:id="@+id/txt_valoracion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -84,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_correo" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_Ciudad" />
 
         <TextView
             android:id="@+id/textView8"
