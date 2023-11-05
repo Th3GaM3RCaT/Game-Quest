@@ -4,72 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ValorarPerfil">
+    tools:context=".PerfilPublico">
 
     <ImageView
         android:id="@+id/img_Profile"
         android:layout_width="126dp"
         android:layout_height="128dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/txt_nombreUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/btn_volver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
         android:onClick="GoMain"
         android:text="volver al main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
 
     <TextView
         android:id="@+id/txt_telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Teléfono"
+        app:layout_constraintBottom_toTopOf="@+id/txt_Ciudad"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="346dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreUsuario"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/txt_nombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:text="Nombre de usuario"
+        app:layout_constraintBottom_toTopOf="@+id/txt_telefono"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_Profile" />
+        app:layout_constraintTop_toBottomOf="@+id/img_Profile"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/txt_Ciudad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="Ciudad"
+        app:layout_constraintBottom_toTopOf="@+id/TextView1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_telefono" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_telefono"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/TextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginBottom="1dp"
         android:text="Valoración Promedio"
+        app:layout_constraintBottom_toTopOf="@+id/rtb_promedio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Ciudad" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RatingBar
         android:id="@+id/rtb_promedio"
@@ -80,32 +87,31 @@
         android:isScrollContainer="false"
         android:numStars="5"
         android:rating="4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextView1" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rview_resegna"
+        android:layout_width="410dp"
+        android:layout_height="556dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mi valoración"
-        app:layout_constraintBottom_toTopOf="@+id/btn_volver"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rtb_promedio"
-        app:layout_constraintVertical_bias="0.175" />
-
-    <RatingBar
-        android:id="@+id/rtb_mi_valoracion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:text="Valoraciones"
+        app:layout_constraintBottom_toTopOf="@+id/rview_resegna"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

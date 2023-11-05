@@ -7,6 +7,7 @@ android {
     namespace = "com.thecurseds.gamequest"
     compileSdk = 33
 
+
     defaultConfig {
         applicationId = "com.thecurseds.gamequest"
         minSdk = 28
@@ -30,6 +31,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+
 }
 
 dependencies {

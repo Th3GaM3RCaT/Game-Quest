@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:clickable="false"
     android:focusable="auto"
-    android:focusableInTouchMode="false"
+    android:focusableInTouchMode="true"
     android:minWidth="@android:dimen/thumbnail_height"
     android:minHeight="@android:dimen/thumbnail_height"
     tools:context=".EditarMiPerfil">
@@ -112,6 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
