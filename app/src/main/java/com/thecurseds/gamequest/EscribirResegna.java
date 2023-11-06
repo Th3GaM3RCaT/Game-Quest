@@ -29,6 +29,7 @@ public class EscribirResegna extends AppCompatActivity {
     TextView txt_usuario_calificado;
 
     RatingBar rtb_hacer_resegna;
+    int star;
     EditText txt_escribir_resegna;
     Button guardar;
     private String userid;  //temporal
@@ -52,6 +53,13 @@ public class EscribirResegna extends AppCompatActivity {
         txt_escribir_resegna.setOnClickListener(view -> TerminarEscribir());
         guardar.setOnClickListener(view ->GuardarResegna());
 
+        txt_usuario_calificado.setText("califique al usuario "+userid);
+        rtb_hacer_resegna.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                star = (int) v;
+            }
+        });
     }
 
     private void GuardarResegna() {
@@ -60,9 +68,9 @@ public class EscribirResegna extends AppCompatActivity {
         resegna.put("id de quien dejó la reseña", firebaseUser.getUid());
         resegna.put("reseña", String.valueOf(txt_escribir_resegna.getText()));
         resegna.put("id del reseñado", userid);
-        resegna.put("valoracion", String.valueOf(rtb_hacer_resegna.getNumStars()));
+        resegna.put("valoracion", String.valueOf(star));
 
-        collectionReference.document(firebaseUser.getUid()).set(resegna).addOnSuccessListener(unused -> {
+        collectionReference.document().set(resegna).addOnSuccessListener(unused -> {
             Toast.makeText(EscribirResegna.this, "Reseña subida con éxito", Toast.LENGTH_SHORT).show();
             finish();
         }).addOnFailureListener(e -> Toast.makeText(EscribirResegna.this, "Intente de nuevo", Toast.LENGTH_SHORT).show());

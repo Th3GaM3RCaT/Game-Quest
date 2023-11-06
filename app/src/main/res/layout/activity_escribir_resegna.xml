@@ -10,6 +10,8 @@
         android:id="@+id/rtb_hacer_resegna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:isIndicator="false"
+        android:numStars="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -18,24 +20,16 @@
         app:layout_constraintVertical_bias="0.120000005" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="califique al usuario "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txt_usuario_calificado"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054" />
-
-    <TextView
         android:id="@+id/txt_usuario_calificado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seba xd"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="califique al usuario &quot;usuario&quot;"
+        app:layout_constraintBottom_toTopOf="@+id/rtb_hacer_resegna"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054"
-        tools:layout_editor_absoluteX="226dp" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/textView4"
@@ -58,9 +52,12 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_resegna"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="268dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/btn_guardar_resegna"

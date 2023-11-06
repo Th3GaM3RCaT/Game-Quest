@@ -46,7 +46,7 @@ public class MainLogin extends AppCompatActivity {
         });
 
         btn_otroPerfil.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), PerfilPublico.class);
+            Intent intent = new Intent(getApplicationContext(), EscribirResegna.class);
             startActivity(intent);
         });
 
