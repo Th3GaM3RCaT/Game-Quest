@@ -7,7 +7,7 @@
     tools:context=".EscribirResegna">
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/rtb_hacer_resegna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/txt_escribir_resegna"
         android:layout_width="370dp"
         android:layout_height="500dp"
         android:layout_marginStart="16dp"
@@ -61,5 +61,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="268dp" />
+
+    <Button
+        android:id="@+id/btn_guardar_resegna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Guardar reseña"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_escribir_resegna"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

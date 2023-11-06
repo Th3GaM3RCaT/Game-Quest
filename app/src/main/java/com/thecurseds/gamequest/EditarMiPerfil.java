@@ -25,12 +25,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -57,7 +56,6 @@ public class EditarMiPerfil extends AppCompatActivity {
     Button Back;
     Uri uri;
 
-    Map<String, Object> usuariodb;
     ActivityResultLauncher<Intent>
             mGetContent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -76,7 +74,8 @@ public class EditarMiPerfil extends AppCompatActivity {
     );
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
-    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
+
 
 
     @SuppressLint({"IntentReset", "InlinedApi"})
@@ -107,15 +106,11 @@ public class EditarMiPerfil extends AppCompatActivity {
                 intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 mGetContent.launch(intent.setType("image/*"));
             }
-
         });
 
         city.setOnClickListener(view -> TerminarEscribir());
-
         Save.setOnClickListener(View -> GuardarDatos());
-
         Back.setOnClickListener(View -> finish());
-
         CargarDatos();
 
     }
@@ -131,7 +126,6 @@ public class EditarMiPerfil extends AppCompatActivity {
     }
 
     private void GuardarDatos() {
-        //FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference usuarios = db.collection("usuarios");
         HashMap<String, String> user = new HashMap<>();
         //a base de datos
@@ -144,13 +138,7 @@ public class EditarMiPerfil extends AppCompatActivity {
         if (uri!=null) {
             SubirFoto(uri);
         }
-        
-
-        //a usuario
         ModificarDatos();
-
-        // Add a new document with a generated ID
-        //db.collection("usuarios").add(user);
         usuarios.document(firebaseUser.getUid()).set(user);
     }
 
@@ -163,47 +151,19 @@ public class EditarMiPerfil extends AppCompatActivity {
 
 
 
-        DocumentReference docRef = db.collection("usuarios")
-                .document(firebaseUser.getUid());
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    usuariodb = document.getData();
-
-                    Toast.makeText(this,
-                            "datos cargados, falta asignar", LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(EditarMiPerfil.this,
-                        "Fallo al cargar los datos", LENGTH_SHORT).show();
-            }
-        });
-
-        /*numberPhone.setText((CharSequence) usuariodb.get("Phone"));
-        city.setText((CharSequence) usuariodb.get("City"));*/
-
-
-        //por terminar
-        try {
-            final File file = File.createTempFile("profile","jpg");
-            storageReference.getFile(file)
-                    .addOnSuccessListener(taskSnapshot -> {
-                Toast.makeText(EditarMiPerfil.this, "yepii", LENGTH_SHORT).show();
-                Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                profile.setImageBitmap(bitmap);
-            }).addOnFailureListener(e ->
-                    Toast.makeText(EditarMiPerfil.this, "sera po", LENGTH_SHORT).show());
-        }catch (Exception e){
-            Toast.makeText(this,
-                    "será nomás, a seguir intentando", LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-
-        //    EditText userName
-        //    EditText numberPhone
-        //    EditText eMail
-        //    EditText city
+        db.collection("usuarios")
+                .document(firebaseUser.getUid()).get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()){
+                        numberPhone.setText((CharSequence)documentSnapshot.getString("Phone"));
+                        city.setText((CharSequence)documentSnapshot.getString("City"));
+                    }
+                });
+        StorageReference imageref = storage.getReference().child(firebaseUser.getUid()+".jpg");
+        imageref.getBytes(1024*1024)
+                .addOnSuccessListener(bytes -> {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
+                    profile.setImageBitmap(bitmap);
+                });
     }
 
     private void ModificarDatos() {

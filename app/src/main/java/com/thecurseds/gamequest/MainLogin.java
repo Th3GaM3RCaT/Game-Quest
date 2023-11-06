@@ -17,6 +17,7 @@ public class MainLogin extends AppCompatActivity {
     Button button;
     TextView textView;
     FirebaseUser user;
+    Button btn_otroPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,10 @@ public class MainLogin extends AppCompatActivity {
         setContentView(R.layout.activity_main_login);
         auth = FirebaseAuth.getInstance();
         button = findViewById(R.id.logout);
+        btn_otroPerfil = findViewById(R.id.btn_otroPerfil);
         textView = findViewById(R.id.user_details);
         user = auth.getCurrentUser();
+
         if (user == null){
             Intent intent = new Intent(getApplicationContext(),Loggin.class);
             startActivity(intent);
@@ -35,22 +38,26 @@ public class MainLogin extends AppCompatActivity {
             textView.setText(user.getEmail());
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(),Loggin.class);
-                startActivity(intent);
-                finish();
-            }
+        button.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(),Loggin.class);
+            startActivity(intent);
+            finish();
         });
+
+        btn_otroPerfil.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), PerfilPublico.class);
+            startActivity(intent);
+        });
+
+    }
+
+    public void GoEditProfile (View v){
+        Intent intento = new Intent(this, EditarMiPerfil.class);
+        startActivity(intento);
     }
     public void GoSeeProfile (View v){
         Intent intento = new Intent(this, VerPerfil.class);
-        startActivity(intento);
-    }
-    public void GoEditProfile (View v){
-        Intent intento = new Intent(this, EditarMiPerfil.class);
         startActivity(intento);
     }
     public void Volver (View v){

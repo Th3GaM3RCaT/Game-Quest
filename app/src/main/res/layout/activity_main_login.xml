@@ -68,6 +68,18 @@
         app:layout_constraintTop_toBottomOf="@+id/logout"
         app:layout_constraintVertical_bias="0.5" />
 
+    <Button
+        android:id="@+id/btn_otroPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:onClick="VerOtroPerfil"
+        android:text="actualmente ver perfil de cierto usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
