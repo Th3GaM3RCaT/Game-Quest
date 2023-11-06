@@ -3,20 +3,13 @@ package com.thecurseds.gamequest;
 public class Resegna {
     private int resegnador;
     private String resegnado;
-    private String resegna;
+    private String resegnaa;
     private int valoracion;
 
-    public void resegna() {
-        this.resegnador = 0;
-        this.resegnado = "";
-        this.resegna = "";
-        this.valoracion = 0;
-    }
-
-    public void resegna(int resegnador, String resegnado, String resegna, int valoracion) {
+    public Resegna(int resegnador, String resegnado, String resegnaa, int valoracion) {
         this.resegnador = resegnador;
         this.resegnado = resegnado;
-        this.resegna = resegna;
+        this.resegnaa = resegnaa;
         this.valoracion = valoracion;
     }
 
@@ -36,12 +29,12 @@ public class Resegna {
         this.resegnado = resegnado;
     }
 
-    public String getResegna() {
-        return resegna;
+    public String getResegnaa() {
+        return resegnaa;
     }
 
-    public void setResegna(String resegna) {
-        this.resegna = resegna;
+    public void setResegnaa(String resegnaa) {
+        this.resegnaa = resegnaa;
     }
 
     public int getValoracion() {

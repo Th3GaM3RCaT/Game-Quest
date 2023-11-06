@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,7 +44,7 @@ public class PerfilPublico extends AppCompatActivity {
         userid = "KmeTNkKgB0dTGvas8XNlMRlP2QC3";    //temporal
 
         arrayList = new ArrayList<>();
-        arrayList.add(new Resegna());
+        arrayList.add(new Resegna(R.drawable.ic_launcher_background,"hola","holaaaa",5));
 
         txt_nombreUsuario = findViewById(R.id.txt_nombreUsuario);
         txt_telefono = findViewById(R.id.txt_telefono);
@@ -55,13 +56,14 @@ public class PerfilPublico extends AppCompatActivity {
         recyclerView = findViewById(R.id.rview_resegna);
 
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(arrayList);
-        //recyclerView.setAdapter(recyclerAdapter);
+        recyclerView.setAdapter(recyclerAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         cargarDatos();
-        /*btn_irAResegnar.setOnClickListener(view -> {
+        btn_irAResegnar.setOnClickListener(view -> {
             Intent intento = new Intent(this, EscribirResegna.class);
             startActivity(intento);
-        });*/
+        });
     }
 
     private void cargarDatos(){

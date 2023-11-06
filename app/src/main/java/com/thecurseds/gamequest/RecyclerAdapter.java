@@ -32,7 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Resegna resegna = arrayList.get(position);
-        holder.resegna.setText(resegna.getResegna());
+        holder.resegna.setText(resegna.getResegnaa());
         holder.valoracion.setNumStars(resegna.getValoracion());
         holder.resegnador.setImageResource(resegna.getResegnador());
     }
