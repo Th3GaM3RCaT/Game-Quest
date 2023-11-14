@@ -129,6 +129,7 @@ public class EditarMiPerfil extends AppCompatActivity {
         CollectionReference usuarios = db.collection("usuarios");
         HashMap<String, String> user = new HashMap<>();
         //a base de datos
+
         user.put("UserId", firebaseUser.getUid());
         user.put("Name", String.valueOf(userName.getText()));
         user.put("Phone", String.valueOf(numberPhone.getText()));

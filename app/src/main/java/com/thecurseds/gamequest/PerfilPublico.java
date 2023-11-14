@@ -24,17 +24,17 @@ public class PerfilPublico extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
-    private RecyclerView recyclerView;
-    private ArrayList<Resegna> arrayList;
+    RecyclerView recyclerView;
+    ArrayList<Resegna> arrayList;
 
-    private TextView txt_nombreUsuario;
-    private TextView txt_telefono;
-    private TextView txt_ciudad;
-    private RatingBar rtb_promedio;
-    private ImageView img_Profile;
-    private Button btn_irAResegnar;
+    TextView txt_nombreUsuario;
+    TextView txt_telefono;
+    TextView txt_ciudad;
+    RatingBar rtb_promedio;
+    ImageView img_Profile;
+    Button btn_irAResegnar;
 
-    private String userid;  //temporal
+    String userid;  //temporal
 
 
 
@@ -44,7 +44,7 @@ public class PerfilPublico extends AppCompatActivity {
         userid = "KmeTNkKgB0dTGvas8XNlMRlP2QC3";    //temporal
 
         arrayList = new ArrayList<>();
-        arrayList.add(new Resegna(R.drawable.ic_launcher_background,"hola","holaaaa",5));
+        arrayList.add(new Resegna(R.drawable.ic_launcher_foreground,"hola","holaaaa",5));
 
         txt_nombreUsuario = findViewById(R.id.txt_nombreUsuario);
         txt_telefono = findViewById(R.id.txt_telefono);
@@ -59,11 +59,12 @@ public class PerfilPublico extends AppCompatActivity {
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        cargarDatos();
+
         btn_irAResegnar.setOnClickListener(view -> {
-            Intent intento = new Intent(this, EscribirResegna.class);
-            startActivity(intento);
+            Intent intent = new Intent(this, EscribirResegna.class);
+            startActivity(intent);
         });
+        cargarDatos();
     }
 
     private void cargarDatos(){

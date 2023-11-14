@@ -24,17 +24,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.resegna,parent,false);
-        return new ViewHolder(v);
+        View inflater = LayoutInflater.from(parent.getContext()).inflate(R.layout.resegna,parent,false);
+        return new ViewHolder(inflater);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Resegna resegna = arrayList.get(position);
-        holder.resegna.setText(resegna.getResegnaa());
-        holder.valoracion.setNumStars(resegna.getValoracion());
-        holder.resegnador.setImageResource(resegna.getResegnador());
+        holder.resegna.setText(resegna.getReview());
+        holder.valoracion.setNumStars(resegna.getAssessment());
+        holder.resegnador.setImageResource(resegna.getReviewer());
     }
 
     @Override
@@ -42,8 +41,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return arrayList.size();
     }
 
-    /*public class ViewHolder*
-    }*/
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

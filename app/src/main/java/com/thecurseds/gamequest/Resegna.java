@@ -1,47 +1,47 @@
 package com.thecurseds.gamequest;
 
 public class Resegna {
-    private int resegnador;
-    private String resegnado;
-    private String resegnaa;
-    private int valoracion;
+    private int reviewer;
+    private String reviewedId;
+    private String review;
+    private int assessment;
 
-    public Resegna(int resegnador, String resegnado, String resegnaa, int valoracion) {
-        this.resegnador = resegnador;
-        this.resegnado = resegnado;
-        this.resegnaa = resegnaa;
-        this.valoracion = valoracion;
-    }
 
-    public int getResegnador() {
-        return resegnador;
+    public Resegna() {
+        this.reviewer = 0;
+        this.reviewedId = "";
+        this.review = "";
+        this.assessment = 0;
     }
-
-    public void setResegnador(int resegnador) {
-        this.resegnador = resegnador;
+    public Resegna(int reviewer, String reviewed, String review, int assessment) {
+        this.reviewer = reviewer;
+        this.reviewedId = reviewed;
+        this.review = review;
+        this.assessment = assessment;
     }
-
-    public String getResegnado() {
-        return resegnado;
+    public int getReviewer() {
+        return reviewer;
     }
-
-    public void setResegnado(String resegnado) {
-        this.resegnado = resegnado;
+    public void setReviewer(int reviewer) {
+        this.reviewer = reviewer;
     }
-
-    public String getResegnaa() {
-        return resegnaa;
+    public String getReviewedId() {
+        return reviewedId;
     }
-
-    public void setResegnaa(String resegnaa) {
-        this.resegnaa = resegnaa;
+    public void setReviewedId(String reviewedId) {
+        this.reviewedId = reviewedId;
     }
-
-    public int getValoracion() {
-        return valoracion;
+    public String getReview() {
+        return review;
     }
-
-    public void setValoracion(int valoracion) {
-        this.valoracion = valoracion;
+    public void setReview(String review) {
+        this.review = review;
     }
+    public int getAssessment() {
+        return assessment;
+    }
+    public void setAssessment(int assessment) {
+        this.assessment = assessment;
+    }
+    
 }

@@ -64,7 +64,7 @@ public class VerPerfil extends AppCompatActivity {
             //Profile.setImageURI(userPhoto);
 
             // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
+            //boolean emailVerified = user.isEmailVerified();
 
 
         }else {
@@ -77,7 +77,7 @@ public class VerPerfil extends AppCompatActivity {
 
         //datos
         db.collection("usuarios")
-                .document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
+                .document(user.getUid()/*nombre documento*/).get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()){
                         PhoneNumber.setText(documentSnapshot.getString("Phone"));
                         Address.setText(documentSnapshot.getString("City"));
