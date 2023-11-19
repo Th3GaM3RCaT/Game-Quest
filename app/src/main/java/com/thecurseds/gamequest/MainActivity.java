@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         button_compra = findViewById(R.id.btn_compra);
 
         button_compra.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ProductPurchaseActivity.class);
+            Intent intent = new Intent(getApplicationContext(), AddAmountActivity.class);
             startActivity(intent);
         });
     }
