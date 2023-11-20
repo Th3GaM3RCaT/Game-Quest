@@ -9,8 +9,9 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RVSingle"
+        android:id="@+id/recyV"
         android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
         android:layout_height="426dp" />
 
     <Button
