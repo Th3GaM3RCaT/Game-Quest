@@ -46,11 +46,14 @@ public class MainLogin extends AppCompatActivity {
         });
 
         btn_otroPerfil.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), PerfilPublico.class);
+            Intent intent = new Intent(this, historial.class);
             startActivity(intent);
         });
 
+
+
     }
+
 
     public void GoEditProfile (View v){
         Intent intento = new Intent(this, EditarMiPerfil.class);

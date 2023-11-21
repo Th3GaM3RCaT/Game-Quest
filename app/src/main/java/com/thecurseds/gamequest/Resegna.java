@@ -13,8 +13,8 @@ public class Resegna {
         this.review = "";
         this.assessment = 0;
     }
-    public Resegna(int reviewer, String reviewed, String review, int assessment) {
-        this.reviewer = reviewer;
+    public Resegna(/*int reviewer,*/ String reviewed, String review, int assessment) {
+        //this.reviewer = reviewer;
         this.reviewedId = reviewed;
         this.review = review;
         this.assessment = assessment;

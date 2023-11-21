@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="410dp"
+    android:layout_height="225dp">
+
+    <TextView
+        android:id="@+id/txt_juegoNombre"
+        android:layout_width="142dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="36dp"
+        android:text="Juego"
+        app:layout_constraintBottom_toTopOf="@+id/txt_tipoTransaccion"
+        app:layout_constraintEnd_toStartOf="@+id/txt_precioJuego"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_comprador"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/txt_precioJuego"
+        android:layout_width="142dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="50dp"
+        android:text="precio"
+        app:layout_constraintBottom_toTopOf="@+id/txt_fechaCompra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_juegoNombre"
+        app:layout_constraintTop_toBottomOf="@+id/txt_comprador"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/txt_tipoTransaccion"
+        android:layout_width="142dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="36dp"
+        android:text="transaccion"
+        app:layout_constraintBottom_toTopOf="@+id/txt_descripcion"
+        app:layout_constraintEnd_toStartOf="@+id/txt_fechaCompra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_juegoNombre"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/txt_fechaCompra"
+        android:layout_width="142dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="50dp"
+        android:text="fecha"
+        app:layout_constraintBottom_toTopOf="@+id/txt_descripcion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_tipoTransaccion"
+        app:layout_constraintTop_toBottomOf="@+id/txt_precioJuego"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/txt_descripcion"
+        android:layout_width="320dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:background="#0A121111"
+        android:text="descripcion &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod libero nec felis tincidunt molestie. Quisque fermentum, orci quis placerat pulvinar, lacus nisl consequat nunc, vel viverra sapien libero at elit.&quot;"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_comprador"
+        android:layout_width="320dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:text="comprador"
+        app:layout_constraintBottom_toTopOf="@+id/txt_juegoNombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

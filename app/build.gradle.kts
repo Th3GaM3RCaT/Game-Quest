@@ -36,7 +36,9 @@ android {
 }
 
 dependencies {
-    val activity_version = "1.6.1"//"1.8.0-alpha01"//"1.7.0-beta01"//
+    implementation("androidx.compose.ui:ui-android:1.5.4")
+    implementation("androidx.compose.ui:ui-tooling-preview-android:1.5.4")
+    val activityVersion = "1.6.1"//"1.8.0-alpha01"//"1.7.0-beta01"//
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
@@ -59,7 +61,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
-    implementation("androidx.activity:activity-ktx:$activity_version")
+    implementation("androidx.activity:activity-ktx:$activityVersion")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")

@@ -136,11 +136,11 @@ public class EditarMiPerfil extends AppCompatActivity {
         user.put("eMail", String.valueOf(eMail.getText()));
         user.put("City", String.valueOf(city.getText()));
         user.put("DateHour", FechaHora());
+        usuarios.document(firebaseUser.getUid()).set(user);
         if (uri!=null) {
             SubirFoto(uri);
         }
         ModificarDatos();
-        usuarios.document(firebaseUser.getUid()).set(user);
     }
 
     private void CargarDatos() {
@@ -155,8 +155,8 @@ public class EditarMiPerfil extends AppCompatActivity {
         db.collection("usuarios")
                 .document(firebaseUser.getUid()).get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()){
-                        numberPhone.setText((CharSequence)documentSnapshot.getString("Phone"));
-                        city.setText((CharSequence)documentSnapshot.getString("City"));
+                        numberPhone.setText(documentSnapshot.getString("Phone"));
+                        city.setText(documentSnapshot.getString("City"));
                     }
                 });
         StorageReference imageref = storage.getReference().child(firebaseUser.getUid()+".jpg");
@@ -177,6 +177,8 @@ public class EditarMiPerfil extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(this,
                                 "Datos Actualizados", LENGTH_SHORT).show();
+                        finish();
+
                     }
                 });
     }

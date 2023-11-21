@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class VerPerfil extends AppCompatActivity {
@@ -55,6 +56,8 @@ public class VerPerfil extends AppCompatActivity {
         Address.setText("Ciudad, Región");
 
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+
         if (user != null) {
             // Name, email address, and profile photo Url
             UserName.setText(user.getDisplayName());
@@ -76,8 +79,9 @@ public class VerPerfil extends AppCompatActivity {
     private void cargarDatos(){
 
         //datos
+
         db.collection("usuarios")
-                .document(user.getUid()/*nombre documento*/).get().addOnSuccessListener(documentSnapshot -> {
+                .document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()){
                         PhoneNumber.setText(documentSnapshot.getString("Phone"));
                         Address.setText(documentSnapshot.getString("City"));
@@ -85,6 +89,7 @@ public class VerPerfil extends AppCompatActivity {
                         Mail.setText(documentSnapshot.getString("eMail"));
                     }
                 });
+
         //imagen
         StorageReference imageref = storage.getReference().child(user.getUid()+".jpg");
         imageref.getBytes(1024*1024)
