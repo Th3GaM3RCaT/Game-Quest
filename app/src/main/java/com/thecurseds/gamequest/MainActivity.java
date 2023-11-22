@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button button_compra;
+    Button button_chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         button_compra.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), AddAmountActivity.class);
+            startActivity(intent);
+        });
+        button_chat = findViewById(R.id.btn_chat);
+
+        button_chat.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Chat.class);
             startActivity(intent);
         });
     }

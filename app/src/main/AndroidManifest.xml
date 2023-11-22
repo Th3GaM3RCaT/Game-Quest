@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
-            android:name=".activity_pay_accepted"
+            android:name=".Chat"
             android:exported="false" />
         <activity
             android:name=".AddCardDetailsActivity"
@@ -49,6 +49,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.firebase.firestore.FirestoreOptions"
+            android:value="merge=false,key=usuarios,idField=Userid" />
+        <meta-data
+            android:name="com.google.firebase.auth.API_KEY"
+            android:value="AIzaSyDhyKmeepEkIv4A8KoKswXNrAnRrmH5rlI" />
+        <meta-data
+            android:name="com.google.firebase.auth.API_KEY"
+            android:value="AIzaSyDhyKmeepEkIv4A8KoKswXNrAnRrmH5rlI" />
+        <meta-data
+            android:name="com.google.firebase.database.ApplicationId"
+            android:value="1:tu_database_url:android:AIzaSyDhyKmeepEkIv4A8KoKswXNrAnRrmH5rlI" />
+        <meta-data
+            android:name="com.google.firebase.messaging.SENDER_ID"
+            android:value="775678110196" />
+        <meta-data
+            android:name="com.google.firebase.storage.StorageBucket"
+            android:value="gs://gamequest-71a36.appspot.com" />
+        <meta-data
+            android:name="com.google.firebase.project.id"
+            android:value="gamequest-71a36" />
+        <meta-data
+            android:name="com.google.firebase.messaging.autoInitEnabled"
+            android:value="true" />
     </application>
 
 </manifest>
