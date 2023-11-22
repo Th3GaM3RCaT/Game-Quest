@@ -23,30 +23,20 @@ import java.util.List;
 import java.util.Map;
 
 public class historial extends AppCompatActivity {
-
     RecyclerView recyclerView;
     List<Transaccion> transaccionList;
     TransaccionAdapter transaccionAdapter;
-    Transaccion transaccion;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseFirestore db2 = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
     FirebaseUser user;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial);
-
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        //cargar datos del juego desde su coleccion         //listo
-        //hacer funcionar el recyclerView                   //listo
-        //cargar datos de transaccion desde su coleccion    //listo
-        //mostrar datos correctamente en cada view          //pendiente
-
         recyclerView = findViewById(R.id.recyclerview_transaccion);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(historial.this);
         recyclerView.setLayoutManager(linearLayoutManager);
         transaccionList = new ArrayList<>();
@@ -67,20 +57,15 @@ public class historial extends AppCompatActivity {
                             String juegoID = document.getString("juego");
                             String tipoTransaccion = document.getString("tipo de transaccion");
                             String fecha = document.getString("fecha");
-
-                            
                             obtenerNombreUsuario(compradorID, nombreComprador -> {
                                 obtenerNombreUsuario(vendedorID, nombreVendedor -> {
                                     obtenerDetallesJuego(juegoID, juegoDetalles -> {
                                         Transaccion transaccion = new Transaccion(
-                                                nombreComprador,
-                                                nombreVendedor,
+                                                nombreComprador, nombreVendedor,
                                                 juegoDetalles.get("nombre"),
-                                                tipoTransaccion,
-                                                fecha,
+                                                tipoTransaccion, fecha,
                                                 juegoDetalles.get("descripcion"),
-                                                juegoDetalles.get("precio")
-                                        );
+                                                juegoDetalles.get("precio"));
                                         transaccionList.add(transaccion);
                                         generarRecycler();
                                     });
@@ -92,22 +77,18 @@ public class historial extends AppCompatActivity {
                     }
                 });
     }
-
     private void obtenerNombreUsuario(String userID, Consumer<String> onNombreObtenido) {
         db.collection("usuarios").document(userID).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String nombre = documentSnapshot.getString("Name");
                         onNombreObtenido.accept(nombre);
-                    } else {
-                        onNombreObtenido.accept("Nombre no encontrado");
-                    }
+                    } else onNombreObtenido.accept("Nombre no encontrado");
                 })
                 .addOnFailureListener(e -> {
                     onNombreObtenido.accept("Error al obtener nombre");
                 });
     }
-
     private void obtenerDetallesJuego(String juegoID, Consumer<Map<String, String>> onDetallesObtenidos) {
         db.collection("juego").document(juegoID).get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -133,5 +114,4 @@ public class historial extends AppCompatActivity {
                     onDetallesObtenidos.accept(detallesError);
                 });
     }
-
 }
