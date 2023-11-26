@@ -16,19 +16,24 @@
         tools:targetApi="31">
         <activity
             android:name=".Chat"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".AddCardDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".AddAmountActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".MainLogin"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".SeeProfile"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".Loggin"
             android:exported="false"
@@ -39,7 +44,8 @@
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".EditarMiPerfil"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
