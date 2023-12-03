@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -66,5 +67,11 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
     implementation ("com.hivemq:hivemq-mqtt-client:1.3.0")
+
+    implementation ("com.google.firebase:firebase-analytics:21.3.0")
+    implementation ("com.google.firebase:firebase-database:20.2.2")
+    implementation ("com.google.firebase:firebase-auth:22.1.2")
+    implementation ("com.google.firebase:firebase-storage:20.2.1")
+    implementation ("com.google.firebase:firebase-firestore:24.8.1")
 
 }
