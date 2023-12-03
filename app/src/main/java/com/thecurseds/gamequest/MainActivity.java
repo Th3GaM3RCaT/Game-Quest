@@ -15,12 +15,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         buttonCompra = findViewById(R.id.btn_compra);
+
+        buttonCompra.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AddAmountActivity.class);
+            startActivity(intent);
+        });
     }
 
     public void IrLogin (View v){
         Intent intent = new Intent(this, MainLogin.class);
         startActivity(intent);
     }
+
 
 
 
