@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
+            android:name=".AddCardDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddAmountActivity"
+            android:exported="false" />
+        <activity
             android:name=".historial"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
@@ -59,7 +65,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"
