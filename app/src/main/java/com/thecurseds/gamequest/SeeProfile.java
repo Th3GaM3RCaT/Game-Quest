@@ -17,10 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.concurrent.atomic.AtomicReference;
 
-
-public class VerPerfil extends AppCompatActivity {
+public class SeeProfile extends AppCompatActivity {
 
     TextView UserName;
     TextView PhoneNumber;
@@ -35,7 +33,7 @@ public class VerPerfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_perfil);
+        setContentView(R.layout.activity_see_profile);
         UserName = findViewById(R.id.txt_nombreUsuario);
         PhoneNumber = findViewById(R.id.txt_telefono);
         Mail = findViewById(R.id.txt_Ciudad);
@@ -59,17 +57,8 @@ public class VerPerfil extends AppCompatActivity {
 
 
         if (user != null) {
-            // Name, email address, and profile photo Url
             UserName.setText(user.getDisplayName());
             Mail.setText(user.getEmail());
-
-            //userPhoto = user.getPhotoUrl();
-            //Profile.setImageURI(userPhoto);
-
-            // Check if user's email is verified
-            //boolean emailVerified = user.isEmailVerified();
-
-
         }else {
             finish();
         }
@@ -79,7 +68,6 @@ public class VerPerfil extends AppCompatActivity {
     private void cargarDatos(){
 
         //datos
-
         db.collection("usuarios")
                 .document(user.getUid()).get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()){
@@ -98,6 +86,4 @@ public class VerPerfil extends AppCompatActivity {
                     Profile.setImageBitmap(bitmap);
                 });
     }
-
-
 }

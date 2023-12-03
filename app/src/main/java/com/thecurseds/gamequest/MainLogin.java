@@ -60,7 +60,7 @@ public class MainLogin extends AppCompatActivity {
         startActivity(intento);
     }
     public void GoSeeProfile (View v){
-        Intent intento = new Intent(this, VerPerfil.class);
+        Intent intento = new Intent(this, SeeProfile.class);
         startActivity(intento);
     }
     public void Volver (View v){
