@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.hivemq.client.mqtt.MqttClient;
+import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +24,14 @@ public class AddGame extends AppCompatActivity {
     Button AddGame;
     EditText EtName , EtPrecio , EtDescripcion;
     private  FirebaseFirestore mfirestore;
+
+    Mqtt3AsyncClient client = MqttClient.builder()
+
+            .useMqttVersion3()
+            .identifier("fdb426aa6db546d487e07d0bf966aca2.s2.eu.hivemq.cloud")
+            .serverPort(8883)
+            .useSslWithDefaultConfig()
+            .buildAsync();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

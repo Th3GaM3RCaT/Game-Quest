@@ -17,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.hivemq.client.mqtt.MqttClient;
+import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,13 @@ public class Shop extends AppCompatActivity {
     // ArrayList para almacenar los datos del RecyclerView
     ArrayList<game_md> gameList;
     game_ad gameAdapter;
+    Mqtt3AsyncClient client = MqttClient.builder()
+
+            .useMqttVersion3()
+            .identifier("fdb426aa6db546d487e07d0bf966aca2.s2.eu.hivemq.cloud")
+            .serverPort(8883)
+            .useSslWithDefaultConfig()
+            .buildAsync();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
