@@ -23,6 +23,10 @@
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
+            android:name=".AddCardDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
             android:name=".EscribirResegna"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
@@ -55,6 +59,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"
