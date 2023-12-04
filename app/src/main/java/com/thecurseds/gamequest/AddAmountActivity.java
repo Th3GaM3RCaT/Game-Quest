@@ -18,18 +18,15 @@ public class AddAmountActivity extends AppCompatActivity {
 
 
         Button buttonContinue = findViewById(R.id.buttonContinue);
-        buttonContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText editTextAmount = findViewById(R.id.editTextAmount);
-                String amount = editTextAmount.getText().toString();
-                if(!amount.equals("")) {
-                    Intent intent = new Intent(AddAmountActivity.this, AddCardDetailsActivity.class);
-                    intent.putExtra("amount", amount);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(AddAmountActivity.this, "Ingrese un monto válido", Toast.LENGTH_SHORT).show();
-                }
+        buttonContinue.setOnClickListener(v -> {
+            EditText editTextAmount = findViewById(R.id.editTextAmount);
+            String amount = editTextAmount.getText().toString();
+            if(!amount.equals("")) {
+                Intent intent = new Intent(AddAmountActivity.this, AddCardDetailsActivity.class);
+                intent.putExtra("amount", amount);
+                startActivity(intent);
+            } else {
+                Toast.makeText(AddAmountActivity.this, "Ingrese un monto válido", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -34,6 +34,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hivemq.client.mqtt.MqttClient;
+import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -48,12 +50,8 @@ public class EditarMiPerfil extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     ImageButton profile;
-    EditText userName;
-    EditText numberPhone;
-    EditText eMail;
-    EditText city;
-    Button Save;
-    Button Back;
+    EditText userName, numberPhone, eMail, city;
+    Button Save, Back;
     Uri uri;
 
     ActivityResultLauncher<Intent>
@@ -74,6 +72,11 @@ public class EditarMiPerfil extends AppCompatActivity {
     );
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
+    Mqtt3AsyncClient client = MqttClient.builder()
+            .useMqttVersion3()
+            .identifier("fdb426aa6db546d487e07d0bf966aca2.s2.eu.hivemq.cloud")
+            .serverPort(8883)
+            .buildAsync();
 
 
 
@@ -112,6 +115,7 @@ public class EditarMiPerfil extends AppCompatActivity {
         Save.setOnClickListener(View -> GuardarDatos());
         Back.setOnClickListener(View -> finish());
         CargarDatos();
+        mqtt();
 
     }
     private void TerminarEscribir(){
@@ -217,5 +221,51 @@ public class EditarMiPerfil extends AppCompatActivity {
                 "Error al subir foto", LENGTH_SHORT).show()
         ).addOnSuccessListener(taskSnapshot -> {});
 
+    }
+    public void mqtt(){
+        client.connectWith()
+                .simpleAuth()
+                .username("Th3_CaT")
+                .password("12345678Aa".getBytes())
+                .applySimpleAuth()
+                .send()
+                .whenComplete((connAck, throwable) -> {
+                    if (throwable != null) {
+                        // handle failure
+                    } else {
+                        // setup subscribes or start publishing
+                        publish();
+                        subscribe();
+                    }
+                });
+    }
+    public void publish(){
+        client.publishWith()
+                .topic("the/topic")
+                .payload("hello world".getBytes())
+                .send()
+                .whenComplete((publish, throwable) -> {
+                    if (throwable != null) {
+                        // handle failure to publish
+                    } else {
+                        // handle successful publish, e.g. logging or incrementing a metric
+
+                    }
+                });
+    }
+    public void subscribe(){
+        client.subscribeWith()
+                .topicFilter("the/topic")
+                .callback(publish -> {
+                    // Process the received message
+                })
+                .send()
+                .whenComplete((subAck, throwable) -> {
+                    if (throwable != null) {
+                        // Handle failure to subscribe
+                    } else {
+                        // Handle successful subscription, e.g. logging or incrementing a metric
+                    }
+                });
     }
 }

@@ -88,7 +88,9 @@ public class AddCardDetailsActivity extends AppCompatActivity {
                     int month = Integer.parseInt(s.toString());
                     if (month < 1 || month > 12) {
                         s.delete(1, 2);
-                        Toast.makeText(AddCardDetailsActivity.this, "Mes no válido, por favor ingrese un mes válido (01-12)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddCardDetailsActivity.this,
+                                "Mes no válido, por favor ingrese un mes válido (01-12)",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
 

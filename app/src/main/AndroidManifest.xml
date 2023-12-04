@@ -15,7 +15,23 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
-            android:name=".AddCardDetailActivity"
+            android:name=".AddGame"
+            android:exported="false" />
+        <activity
+            android:name=".Shop"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Loggin"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
+            android:name=".AddCardDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".AddAmountActivity"
@@ -26,10 +42,6 @@
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".PublicProfile"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
-        <activity
-            android:name=".AddCardDetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
@@ -45,10 +57,6 @@
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
-            android:name=".Loggin"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
-        <activity
             android:name=".Registrar"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
@@ -58,13 +66,7 @@
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
 
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"

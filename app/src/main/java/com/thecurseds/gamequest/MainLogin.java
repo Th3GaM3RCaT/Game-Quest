@@ -64,7 +64,7 @@ public class MainLogin extends AppCompatActivity {
         startActivity(intento);
     }
     public void Volver (View v){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Shop.class);
         startActivity(intent);
     }
 }

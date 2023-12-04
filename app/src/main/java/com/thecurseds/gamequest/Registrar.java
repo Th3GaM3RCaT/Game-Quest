@@ -50,63 +50,54 @@ public class Registrar extends AppCompatActivity {
         buttonReg = findViewById(R.id.registerBtn);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Loggin.class);
-                startActivity(intent);
-                finish();
-            }
+        textView.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Loggin.class);
+            startActivity(intent);
+            finish();
         });
 
 
-        buttonReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                String email, password;
-                email = String.valueOf(editTextEmail.getText());
-                password = String.valueOf(editTextPassword.getText()) ;
+        buttonReg.setOnClickListener(view -> {
+            progressBar.setVisibility(View.VISIBLE);
+            String email, password;
+            email = String.valueOf(editTextEmail.getText());
+            password = String.valueOf(editTextPassword.getText()) ;
 
-                if (TextUtils.isEmpty(email)){
+            if (TextUtils.isEmpty(email)){
 
-                    Toast.makeText(Registrar.this, "Coloca correo mano", Toast.LENGTH_SHORT).show();
-                    return;
-
-                }
-                if (TextUtils.isEmpty(password)){
-
-                    Toast.makeText(Registrar.this, "Coloca contraseña mano", Toast.LENGTH_SHORT).show();
-                    return;
-
-                }
-
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-
-                                    Toast.makeText(Registrar.this, "Cuenta creada mano.",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-
-                                else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(Registrar.this, "este correo ya tiene una cuenta.",
-                                            Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-                        });
-
+                Toast.makeText(Registrar.this, "Coloca correo mano", Toast.LENGTH_SHORT).show();
+                return;
 
             }
+            if (TextUtils.isEmpty(password)){
+
+                Toast.makeText(Registrar.this, "Coloca contraseña mano", Toast.LENGTH_SHORT).show();
+                return;
+
+            }
+
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+
+                        progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(Registrar.this, "Cuenta creada mano.",
+                                    Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(),Shop.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(Registrar.this, "este correo ya tiene una cuenta.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
         });
 
 

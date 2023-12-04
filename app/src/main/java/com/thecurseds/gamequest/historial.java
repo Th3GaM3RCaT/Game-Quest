@@ -27,7 +27,6 @@ public class historial extends AppCompatActivity {
     List<Transaccion> transaccionList;
     TransaccionAdapter transaccionAdapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseFirestore db2 = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
     FirebaseUser user;
     @Override

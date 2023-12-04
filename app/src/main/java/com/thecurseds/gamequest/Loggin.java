@@ -48,56 +48,47 @@ public class Loggin extends AppCompatActivity {
         buttonLog = findViewById(R.id.logginBtn);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.registerNow);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Registrar.class);
-                startActivity(intent);
-                finish();
-            }
+        textView.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Registrar.class);
+            startActivity(intent);
+            finish();
         });
 
-        buttonLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                String email, password;
-                email = String.valueOf(editTextEmail.getText());
-                password = String.valueOf(editTextPassword.getText());
+        buttonLog.setOnClickListener(view -> {
+            progressBar.setVisibility(View.VISIBLE);
+            String email, password;
+            email = String.valueOf(editTextEmail.getText());
+            password = String.valueOf(editTextPassword.getText());
 
-                if (TextUtils.isEmpty(email)) {
+            if (TextUtils.isEmpty(email)) {
 
-                    Toast.makeText(Loggin.this, "Coloca correo mano", Toast.LENGTH_SHORT).show();
-                    return;
-
-                }
-                if (TextUtils.isEmpty(password)) {
-
-                    Toast.makeText(Loggin.this, "Coloca contraseña mano", Toast.LENGTH_SHORT).show();
-                    return;
-
-                }
-
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(Loggin.this, "Te logeaste mano por fin", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(Loggin.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-                        })
-                ;
+                Toast.makeText(Loggin.this, "Coloca correo mano", Toast.LENGTH_SHORT).show();
+                return;
 
             }
+            if (TextUtils.isEmpty(password)) {
+
+                Toast.makeText(Loggin.this, "Coloca contraseña mano", Toast.LENGTH_SHORT).show();
+                return;
+
+            }
+
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Loggin.this, "Te logeaste mano por fin", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), Shop.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(Loggin.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+            ;
+
         });
 
 
