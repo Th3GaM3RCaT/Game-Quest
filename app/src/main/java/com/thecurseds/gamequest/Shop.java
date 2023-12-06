@@ -1,10 +1,15 @@
 package com.thecurseds.gamequest;
 
+import static android.widget.Toast.LENGTH_SHORT;
+import static com.hivemq.client.mqtt.MqttGlobalPublishFilter.ALL;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +24,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.hivemq.client.mqtt.MqttClient;
 import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
+import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
 
 import java.util.ArrayList;
 
@@ -110,5 +116,49 @@ public class Shop extends AppCompatActivity {
         onBackPressed();
         return false;
     }
+
+    public void main(String[] args) {
+        final String host = "fdb426aa6db546d487e07d0bf966aca2.s2.eu.hivemq.cloud";
+        final String username = "Th3_CaT";
+        final String password = "<12345678Aa>";
+        final Mqtt5BlockingClient client = MqttClient.builder()
+                .useMqttVersion5()
+                .serverHost(host)
+                .serverPort(8883)
+                .sslWithDefaultConfig()
+                .buildBlocking();
+
+        // connect to HiveMQ Cloud with TLS and username/pw
+        client.connectWith()
+                .simpleAuth()
+                .username(username)
+                .password(UTF_8.encode(password))
+                .applySimpleAuth()
+                .send();
+
+        Toast.makeText(this, "Connected successfully", LENGTH_SHORT).show();
+
+        // subscribe to the topic "my/test/topic"
+        client.subscribeWith()
+                .topicFilter("my/test/topic")
+                .send();
+
+        // set a callback that is called when a message is received (using the async API style)
+        client.toAsync().publishes(ALL, publish -> {
+            System.out.println("Received message: " +
+                    publish.getTopic() + " -> " +
+                    UTF_8.decode(publish.getPayload().get()));
+
+            // disconnect the client after a message was received
+            client.disconnect();
+        });
+
+        // publish a message to the topic "my/test/topic"
+        client.publishWith()
+                .topic("my/test/topic")
+                .payload(UTF_8.encode("Hello"))
+                .send();
+    }
+
 }
 

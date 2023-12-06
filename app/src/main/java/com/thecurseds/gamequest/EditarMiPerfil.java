@@ -2,6 +2,8 @@ package com.thecurseds.gamequest;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+import static com.hivemq.client.mqtt.MqttGlobalPublishFilter.ALL;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +38,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hivemq.client.mqtt.MqttClient;
 import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
+import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -72,11 +76,6 @@ public class EditarMiPerfil extends AppCompatActivity {
     );
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
-    Mqtt3AsyncClient client = MqttClient.builder()
-            .useMqttVersion3()
-            .identifier("fdb426aa6db546d487e07d0bf966aca2.s2.eu.hivemq.cloud")
-            .serverPort(8883)
-            .buildAsync();
 
 
 
@@ -113,17 +112,18 @@ public class EditarMiPerfil extends AppCompatActivity {
 
         city.setOnClickListener(view -> TerminarEscribir());
         Save.setOnClickListener(View -> GuardarDatos());
-        Back.setOnClickListener(View -> finish());
+        Back.setOnClickListener(view -> finish());
         CargarDatos();
-        mqtt();
+
 
     }
-    private void TerminarEscribir(){
+
+    private void TerminarEscribir() {
         Save.setEnabled(true);
         View view = this.getCurrentFocus();
-        if (view != null&&city.didTouchFocusSelect()) {
+        if (view != null && city.didTouchFocusSelect()) {
             InputMethodManager imm =
-                    (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
         city.clearFocus();
@@ -141,7 +141,7 @@ public class EditarMiPerfil extends AppCompatActivity {
         user.put("City", String.valueOf(city.getText()));
         user.put("DateHour", FechaHora());
         usuarios.document(firebaseUser.getUid()).set(user);
-        if (uri!=null) {
+        if (uri != null) {
             SubirFoto(uri);
         }
         ModificarDatos();
@@ -155,18 +155,17 @@ public class EditarMiPerfil extends AppCompatActivity {
         eMail.setText(firebaseUser.getEmail());
 
 
-
         db.collection("usuarios")
                 .document(firebaseUser.getUid()).get().addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()){
+                    if (documentSnapshot.exists()) {
                         numberPhone.setText(documentSnapshot.getString("Phone"));
                         city.setText(documentSnapshot.getString("City"));
                     }
                 });
-        StorageReference imageref = storage.getReference().child(firebaseUser.getUid()+".jpg");
-        imageref.getBytes(1024*1024)
+        StorageReference imageref = storage.getReference().child(firebaseUser.getUid() + ".jpg");
+        imageref.getBytes(1024 * 1024)
                 .addOnSuccessListener(bytes -> {
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     profile.setImageBitmap(bitmap);
                 });
     }
@@ -207,9 +206,10 @@ public class EditarMiPerfil extends AppCompatActivity {
         return date;
 
     }
-    private String AddZero(int number){
-        String numbzero = String.valueOf(number);
-        if (number<10){numbzero = "0"+number;}
+
+    private String AddZero(int number) {
+        String numbzero = number+"";
+        if (number < 10) numbzero = "0" + number;
         return numbzero;
     }
 
@@ -220,52 +220,50 @@ public class EditarMiPerfil extends AppCompatActivity {
         uploadTask.addOnFailureListener(exception -> Toast.makeText(this,
                 "Error al subir foto", LENGTH_SHORT).show()
         ).addOnSuccessListener(taskSnapshot -> {});
-
     }
-    public void mqtt(){
+
+    public void main(String[] args) {
+
+        final String host = "fdb426aa6db546d487e07d0bf966aca2.s2.eu.hivemq.cloud";
+        final String username = "Th3_CaT";
+        final String password = "<12345678Aa>";
+        final Mqtt5BlockingClient client = MqttClient.builder()
+                .useMqttVersion5()
+                .serverHost(host)
+                .serverPort(8883)
+                .sslWithDefaultConfig()
+                .buildBlocking();
+
+        // connect to HiveMQ Cloud with TLS and username/pw
         client.connectWith()
                 .simpleAuth()
-                .username("Th3_CaT")
-                .password("12345678Aa".getBytes())
+                .username(username)
+                .password(UTF_8.encode(password))
                 .applySimpleAuth()
-                .send()
-                .whenComplete((connAck, throwable) -> {
-                    if (throwable != null) {
-                        // handle failure
-                    } else {
-                        // setup subscribes or start publishing
-                        publish();
-                        subscribe();
-                    }
-                });
-    }
-    public void publish(){
-        client.publishWith()
-                .topic("the/topic")
-                .payload("hello world".getBytes())
-                .send()
-                .whenComplete((publish, throwable) -> {
-                    if (throwable != null) {
-                        // handle failure to publish
-                    } else {
-                        // handle successful publish, e.g. logging or incrementing a metric
+                .send();
 
-                    }
-                });
-    }
-    public void subscribe(){
+        Toast.makeText(this, "Connected successfully", LENGTH_SHORT).show();
+
+        // subscribe to the topic "my/test/topic"
         client.subscribeWith()
-                .topicFilter("the/topic")
-                .callback(publish -> {
-                    // Process the received message
-                })
-                .send()
-                .whenComplete((subAck, throwable) -> {
-                    if (throwable != null) {
-                        // Handle failure to subscribe
-                    } else {
-                        // Handle successful subscription, e.g. logging or incrementing a metric
-                    }
-                });
+                .topicFilter("my/test/topic")
+                .send();
+
+        // set a callback that is called when a message is received (using the async API style)
+        client.toAsync().publishes(ALL, publish -> {
+            System.out.println("Received message: " +
+                    publish.getTopic() + " -> " +
+                    UTF_8.decode(publish.getPayload().get()));
+
+            // disconnect the client after a message was received
+            client.disconnect();
+        });
+
+        // publish a message to the topic "my/test/topic"
+        client.publishWith()
+                .topic("my/test/topic")
+                .payload(UTF_8.encode("Hello"))
+                .send();
+
     }
 }
