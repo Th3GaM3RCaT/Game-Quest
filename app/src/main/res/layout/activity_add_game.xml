@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/EtName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:ems="10"
         android:hint="Nombre Juego"
         android:inputType="text" />
@@ -30,7 +30,7 @@
     <EditText
         android:id="@+id/EtPrecio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:ems="10"
         android:hint="Precio"
         android:inputType="number" />
@@ -38,7 +38,7 @@
     <EditText
         android:id="@+id/EtDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:ems="10"
         android:inputType="text"
         android:hint="Descripcion " />

@@ -17,7 +17,8 @@ public class MainLogin extends AppCompatActivity {
     Button button;
     TextView textView;
     FirebaseUser user;
-    Button btn_otroPerfil;
+    Button historial;
+    //Button otroPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,8 @@ public class MainLogin extends AppCompatActivity {
         setContentView(R.layout.activity_main_login);
         auth = FirebaseAuth.getInstance();
         button = findViewById(R.id.logout);
-        btn_otroPerfil = findViewById(R.id.btn_otroPerfil);
+        historial = findViewById(R.id.btn_historial);
+        //otroPerfil = findViewById(R.id.btn_otro_perfil);
         textView = findViewById(R.id.user_details);
         user = auth.getCurrentUser();
 
@@ -45,10 +47,14 @@ public class MainLogin extends AppCompatActivity {
             finish();
         });
 
-        btn_otroPerfil.setOnClickListener(view -> {
+        historial.setOnClickListener(view -> {
             Intent intent = new Intent(this, historial.class);
             startActivity(intent);
         });
+        /*otroPerfil.setOnClickListener(view -> {
+            Intent intent = new Intent(this,PublicProfile.class);
+            startActivity(intent);
+        });*/
 
 
 

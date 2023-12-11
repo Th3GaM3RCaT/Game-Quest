@@ -27,7 +27,7 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email" />
+            android:hint="email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -38,7 +38,7 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password" />
+            android:hint="password" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
@@ -62,7 +62,7 @@
         android:id="@+id/registerNow"
         android:text="@string/dale_para_registrarte"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="55dp"/>
 
 
 </LinearLayout>

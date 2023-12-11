@@ -7,23 +7,17 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.hivemq.client.mqtt.MqttClient;
-import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
 import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
 
 import java.util.ArrayList;
@@ -32,21 +26,11 @@ public class Shop extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseFirestore db;
-    Button BtnAdd;
-
-    Button buttonCompra;
-    Button login;
+    Button BtnAdd, buttonCompra, login;
 
     // ArrayList para almacenar los datos del RecyclerView
     ArrayList<game_md> gameList;
     game_ad gameAdapter;
-    Mqtt3AsyncClient client = MqttClient.builder()
-
-            .useMqttVersion3()
-            .identifier("fdb426aa6db546d487e07d0bf966aca2.s2.eu.hivemq.cloud")
-            .serverPort(8883)
-            .useSslWithDefaultConfig()
-            .buildAsync();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,22 +38,13 @@ public class Shop extends AppCompatActivity {
         setContentView(R.layout.activity_shop);
 
         buttonCompra = findViewById(R.id.btn_compra);
-        login = findViewById(R.id.button);
-
-        buttonCompra.setOnClickListener(view -> {
-            Intent intent = new Intent(this, AddAmountActivity.class);
-            startActivity(intent);
-        });
-
-        login.setOnClickListener(view -> {
-            Intent intent = new Intent(this, MainLogin.class);
-            startActivity(intent);
-        });
-
-        this.setTitle("Aca Va la tienda");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        login = findViewById(R.id.btn_login);
         BtnAdd = findViewById(R.id.BtnAdd);
+
+        buttonCompra.setOnClickListener(view -> startActivity(new Intent(this, AddAmountActivity.class)));
+
+        login.setOnClickListener(view -> startActivity(new Intent(this, MainLogin.class)));
+
         BtnAdd.setOnClickListener(view -> startActivity(new Intent(Shop.this, AddGame.class)));
 
         // Configuración del RecyclerView

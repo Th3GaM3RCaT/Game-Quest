@@ -39,8 +39,6 @@ public class TransaccionAdapter extends RecyclerView.Adapter<TransaccionAdapter.
             fechaCompra = (TextView)view.findViewById(R.id.txt_fechaCompra);
             descripcionJuego = (TextView)view.findViewById(R.id.txt_descripcion);
         }
-
-
     }
 
 

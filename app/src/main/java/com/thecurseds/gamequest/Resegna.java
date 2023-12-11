@@ -1,35 +1,30 @@
 package com.thecurseds.gamequest;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+
 public class Resegna {
-    private int reviewer;
-    private String reviewedId;
+    private Bitmap reviewer;
     private String review;
     private int assessment;
 
-
     public Resegna() {
-        this.reviewer = 0;
-        this.reviewedId = "";
+        this.reviewer = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
         this.review = "";
         this.assessment = 0;
     }
-    public Resegna(/*int reviewer,*/ String reviewed, String review, int assessment) {
-        //this.reviewer = reviewer;
-        this.reviewedId = reviewed;
+
+    public Resegna(Bitmap reviewer, String review, int assessment) {
+        this.reviewer = reviewer;
         this.review = review;
         this.assessment = assessment;
     }
-    public int getReviewer() {
+    public Bitmap getReviewer() {
         return reviewer;
     }
-    public void setReviewer(int reviewer) {
+    public void setReviewer(Bitmap reviewer) {
         this.reviewer = reviewer;
-    }
-    public String getReviewedId() {
-        return reviewedId;
-    }
-    public void setReviewedId(String reviewedId) {
-        this.reviewedId = reviewedId;
     }
     public String getReview() {
         return review;
